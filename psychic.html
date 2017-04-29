@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Psychic</title>
+  <h1>That Psychic Game</h1>
+</head>
+
+<body>
+    
+<!-- When we start playing the game, our HTML will be placed into this div. -->
+    <p>Guess the letter I'm thinking of</p>
+    <div id="game">
+    </div>
+
+   <script type="text/javascript">
+
+// Our array of possible computer choices.
+      var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+// Variables for tracking our wins, losses and ties. They begin at 0.
+      var wins = 0;
+      var losses = 0;
+
+        // When the user presses a key, it will run the following function...
+      document.onkeyup = function(event) {
+        // Determines which key was pressed
+        var userGuess = event.key;
+       
+        // Randomly chooses a choice from the options array. This is the Computer's guess.
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+         //After 9 guesses, +1 loss, else +1 win
+        for (var i = 9; i > 0; i--) {
+
+          //if userGuess does not equal computerGuess, then type out letter and give back message, "nope! Try again." 
+          if (userGuess !== computerGuess) {
+            var guessMade = userGuess;
+          }
+          else if (userGuess === computerGuess) {
+            wins++;
+          }
+        }
+        
+
+        // Alerts the key the user pressed (userGuess).
+        // alert(userGuess);
+        //Alerts the Computer's guess. 
+        // alert(computerGuess);
+      // };
+
+
+         // Here we create the HTML that will be injected into our div and displayed on the page.
+          var html = "<p>Wins: " + wins + "</p>" +
+                     // "<p>Losses: " + losses + "</p>" ;
+          // "<p>Guesses left: " + guessesLeft[i] + "</p>" + 
+          "<p>Your Guesses so Far: " + guessMade + "</p>";
+
+          // Injecting the HTML we just created into our div and updating the game information on our page.
+          document.querySelector("#game").innerHTML = html; 
+      
+      };
+
+    </script>
+</body>
+</html>
